@@ -1,0 +1,33 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.guestTypeId && !guestType"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+    <strong>ERROR</strong>:
+    A guest type with the same <i>description</i> already exists.
+  </div>
+
+  <div class="form-group">
+    <label for="guestTypeDesc">Guest Type Description:</label>
+    <input type="text" id="guestTypeDesc" formControlName="guestTypeDesc" required placeholder="Guest Type Description..." class="form-control" />
+    <div *ngIf="hasError('guestTypeDesc')"  class="invalid-feedback">
+      <div *ngIf="form.get('guestTypeDesc').errors?.required">
+        Guest Type Description is required.
+      </div>
+    </div>
+
+    <!--<div *ngIf="form.get('guestTypeDesc').invalid && (form.get('guestTypeDesc').dirty || form.get('guestTypeDesc').touched)" class="invalid-feedback">
+      <div *ngIf="form.get('guestTypeDesc').errors?.required">
+        Guest Type Description is required.
+      </div>
+    </div>-->
+  </div>
+</div>
+
+<div class="form-group commands">
+  <button type="submit" *ngIf="guestTypeId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+  <button type="submit" *ngIf="!guestTypeId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Guest Type</button>
+  <button type="submit" [routerLink]="['/guestTypes']" class="btn btn-default">Cancel</button>
+  <button type="button" *ngIf="guestTypeId" (click)="onDelete()" class="btn btn-danger">Delete</button>
+</div>

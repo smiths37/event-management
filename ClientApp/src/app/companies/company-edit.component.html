@@ -1,0 +1,156 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="!company"><em>Loading...</em></p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title class="heading-title text-warning text-center">Company Maintenance</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list role="list">
+            <a mat-list-item [routerLink]="['/companyAddress', companyId]">Add Address</a>
+            <a mat-list-item [routerLink]="['/exhibitor']">Add Exhibitor</a>
+            <a mat-list-item [routerLink]="['/person']">Add Person</a>
+            <a mat-list-item [routerLink]="['/companyEmail', companyId]">Add E-mail</a>
+            <a mat-list-item [routerLink]="['/companyNote', companyId]">Add Notes</a>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+            <strong>ERROR</strong>:
+            A Company with the same <i>company name</i> already exists.
+          </div>
+
+          <div class="form-group">
+
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="companyName">Company name:</label>
+                  <input type="text" id="companyName" formControlName="companyName" required placeholder="Company name..." class="form-control" />
+                  <div *ngIf="hasError('companyName')" class="invalid-feedback">
+                    <div *ngIf="form.get('companyName').errors?.required">
+                      Company Name is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="alphaIndexName">Alpha Index Name:</label>
+                  <input type="text" id="alphaIndexName" formControlName="alphaIndexName" required placeholder="Alpha Index Name..." class="form-control" />
+                  <div *ngIf="hasError('alphaIndexName')" class="invalid-feedback">
+                    <div *ngIf="form.get('alphaIndexName').errors?.required">
+                      Alpha Index Name is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="companyType">Company Type:</label>
+                  <mat-form-field *ngIf="companyTypes">
+                    <mat-label>Select a Company Type</mat-label>
+                    <mat-select id="companyType" formControlName="companyType">
+                      <mat-option *ngFor="let companyType of companyTypes" [value]="companyType.companyTypeId">{{companyType.companyTypeDesc}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div *ngIf="hasError('companyType')" class="invalid-feedback">
+                    <div *ngIf="form.get('companyType').errors?.required">
+                      Company Type is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="source">Source:</label>
+                  <mat-form-field *ngIf="sources">
+                    <mat-label>Select a Source</mat-label>
+                    <mat-select id="source" formControlName="source">
+                      <mat-option *ngFor="let source of sources" [value]="source.sourceId">{{source.sourceDesc}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!--main content-->
+        <div class="form-group commands">
+          <button type="submit" (click)="onSubmit()" class="btn btn-success" *ngIf="!companyId" [disabled]="form.invalid">Create Company</button>
+          <button type="submit" (click)="onSubmit()" class="btn btn-success" *ngIf="companyId" [disabled]="form.invalid">Save</button>
+          <button type="submit" [routerLink]="['/companies']" class="btn btn-default">Cancel</button>
+          <!--Should there be an option to delete a company?-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--main content below side menu-->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <mat-tab-group mat-align-tabs="start">
+          <mat-tab label="Addresses">
+            <!--Display Company Addresses Component-->
+            <div class="jumbotron bg-secondary">
+              <app-company-addresses></app-company-addresses>
+            </div>
+          </mat-tab>
+          <mat-tab label="People">
+            <!--Display Company People Component-->
+            <div class="jumbotron bg-secondary">
+              <app-company-people></app-company-people>
+            </div>
+          </mat-tab>
+          <mat-tab label="Exhibitors">
+            <!--Display the Company Exhibitors Component-->
+            <div class="jumbotron bg-secondary">
+              <app-company-exhibitors></app-company-exhibitors>
+            </div>
+          </mat-tab>
+          <mat-tab label="Email">
+            <!--Display Company Email Component-->
+            <div class="jumbotron bg-secondary">
+              <app-company-email></app-company-email>
+            </div>
+          </mat-tab>
+          <mat-tab label="Notes">
+            <!--Display Company Notes Component-->
+            <div class="jumbotron bg-secondary">
+              <app-company-notes></app-company-notes>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+  <div class="row"></div>
+
+
+<!--<div class="help-block">
+  {{ form.value | json }}
+</div>-->

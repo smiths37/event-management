@@ -1,0 +1,41 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.creditTypeCode && !creditType"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+    <strong>ERROR</strong>:
+    A credit type with the same <i>code</i> and <i>description</i> already exists.
+  </div>
+
+  <div class="form-group">
+    <label for="creditTypeCode">Credit Type Code:</label>
+    <input type="text" id="creditTypeCode" formControlName="creditTypeCode" required placeholder="Credit Type Code..." class="form-control" />
+    <div *ngIf="hasError('creditTypeCode')" class="invalid-feedback">
+      <div *ngIf="form.get('creditTypeCode').errors?.required">
+        Credit Type Code is required.
+      </div>
+    </div>
+
+    <label for="creditTypeDesc">Credit Type Description:</label>
+    <input type="text" id="creditTypeDesc" formControlName="creditTypeDesc" required placeholder="Credit Type Description..." class="form-control" />
+    <div *ngIf="hasError('creditTypeDesc')" class="invalid-feedback">
+      <div *ngIf="form.get('creditTypeDesc').errors?.required">
+        Credit Type Description is required.
+      </div>
+    </div>
+    <div class="custom-control custom-checkbox mb-3">
+      <input type="checkbox" id="allowOnWeb" formControlName="allowOnWeb" checked class="custom-control-input" ng-model="checked" />
+      <label class="custom-control-label" for="allowOnWeb">Allow on Web?</label>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="form-group commands">
+  <button type="submit" *ngIf="creditTypeCode" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+  <button type="submit" *ngIf="!creditTypeCode" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Credit Type</button>
+  <button type="submit" [routerLink]="['/creditTypes']" class="btn btn-default">Cancel</button>
+  <button type="button" *ngIf="creditTypeCode" (click)="onDelete()" class="btn btn-danger">Delete</button>
+</div>

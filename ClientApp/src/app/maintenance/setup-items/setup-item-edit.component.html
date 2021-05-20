@@ -1,0 +1,28 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.setupId && !setupItem"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+    <strong>ERROR</strong>:
+    A Setup Item with the same <i>description</i> already exists.
+  </div>
+
+  <div class="form-group">
+    <label for="setupDesc">Setup Item Description:</label>
+    <input type="text" id="setupDesc" formControlName="setupDesc" required placeholder="Setup Item Description..." class="form-control" />
+    <div *ngIf="hasError('setupDesc')" class="invalid-feedback">
+      <div *ngIf="form.get('setupDesc').errors?.required">
+        Setup Item Description is required.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="form-group commands">
+  <button type="submit" *ngIf="setupId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+  <button type="submit" *ngIf="!setupId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Setup Item</button>
+  <button type="submit" [routerLink]="['/setupItems']" class="btn btn-default">Cancel</button>
+  <button type="button" *ngIf="setupId" (click)="onDelete()" class="btn btn-danger">Delete</button>
+</div>

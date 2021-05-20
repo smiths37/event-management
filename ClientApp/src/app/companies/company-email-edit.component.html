@@ -1,0 +1,55 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.emailId && !email"><em>Loading...</em></p>
+
+<div class="row">
+  <div class="col-12">
+    <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="emailType">Email Type</label>
+              <mat-form-field *ngIf="emailTypes">
+                <mat-label>Select an Email Type</mat-label>
+                <mat-select id="emailType" formControlName="emailType">
+                  <mat-option *ngFor="let emailType of emailTypes" [value]="emailType.emailTypeId">{{emailType.emailTypeDesc}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="hasError('emailType')" class="invalid-feedback">
+                <div *ngIf="form.get('emailType').errors?.required">
+                  Email Type is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="emailAddress">Address:</label>
+              <input type="text" id="emailAddress" formControlName="emailAddress" required placeholder="Address..." class="form-control" />
+              <div *ngIf="hasError('emailAddress')" class="invalid-feedback">
+                <div *ngIf="form.get('emailAddress').errors?.required">
+                  Address is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="form-group commands">
+      <button type="submit" (click)="onSubmit()" class="btn btn-success" *ngIf="!emailId" [disabled]="form.invalid">Create Address</button>
+      <button type="submit" (click)="onSubmit()" class="btn btn-success" *ngIf="emailId" [disabled]="form.invalid">Save</button>
+      <button type="submit" [routerLink]="['/company', companyId]" class="btn btn-default">Cancel</button>
+      <button type="button" *ngIf="emailId" (click)="onDelete()" class="btn btn-danger">Delete</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!--<div class="help-block">
+  {{ form.value | json }}
+</div>-->

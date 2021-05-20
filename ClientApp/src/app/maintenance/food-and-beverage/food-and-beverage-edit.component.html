@@ -1,0 +1,26 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.fbId && !fbItem"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+    <strong>ERROR</strong>:
+    A food and beverage item with the same <i>description</i> already exists.
+  </div>
+
+  <div class="form-group">
+    <label for="fbDesc">Food and Beverage Item Description:</label>
+    <input type="text" id="fbDesc" formControlName="fbDesc" required placeholder="Food and Beverage Item Description..." class="form-control" />
+    <div *ngIf="hasError('fbDesc')" class="invalid-feedback">
+      <div *ngIf="form.get('fbDesc').errors?.required">
+        Food and Beverage Item Description is required.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group commands">
+  <button type="submit" *ngIf="fbId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+  <button type="submit" *ngIf="!fbId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Food and Beverage Item</button>
+  <button type="submit" [routerLink]="['/fbItems']" class="btn btn-default">Cancel</button>
+  <button type="button" *ngIf="fbId" (click)="onDelete()" class="btn btn-danger">Delete</button>
+</div>

@@ -1,0 +1,238 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.companyId && this.meetingCode && !exhibitor"><em>Loading...</em></p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title class="heading-title text-warning text-center">Exhibitor Maintenance</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list role="list">
+            <a mat-list-item [routerLink]="['/exhibitorNote', exhibitorId, companyId, meetingCode]">Add Note</a>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+          <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+            <strong>ERROR</strong>:
+            This exhibitor has already been added to this meeting.
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="meetingCode">Meeting Code:</label>
+                <mat-form-field *ngIf="meetings">
+                  <mat-label>Select a Meeting Code</mat-label>
+                  <mat-select id="meetingCode" formControlName="meetingCode" (selectionChange)="onMeetingCodeSelected($event)">
+                    <mat-option *ngFor="let meeting of meetings" [value]="meeting.meetingCode">{{meeting.meetingCode}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div *ngIf="hasError('meetingCode')" class="invalid-feedback">
+                  <div *ngIf="form.get('meetingCode').errors?.required">
+                    Meeting Code is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="meetingDesc">Meeting Name:</label>
+                <input type="text" id="meetingDesc" formControlName="meetingDesc" readonly class="form-control" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="companyName">Company Name:</label>
+                <mat-form-field *ngIf="companies">
+                  <mat-label>Select a Company</mat-label>
+                  <mat-select id="companyName" formControlName="companyName" (selectionChange)="onCompanySelected($event)">
+                    <mat-option *ngFor="let company of companies" [value]="company.companyId">{{company.companyName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div *ngIf="hasError('companyName')" class="invalid-feedback">
+                  <div *ngIf="form.get('companyName').errors?.required">
+                    Company Name is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="companyId">Company ID:</label>
+                <input type="text" id="companyId" formControlName="companyId" readonly placeholder="Company ID..." class="form-control" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="personName">Person Name:</label>
+                <mat-form-field *ngIf="companyPeople">
+                  <mat-label>Select a Person</mat-label>
+                  <mat-select id="personName" formControlName="personName">
+                    <mat-option *ngFor="let person of companyPeople" [value]="person.personId">{{person.lastName + ', ' + person.firstName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="sourceDesc">Source:</label>
+                <mat-form-field *ngIf="sources">
+                  <mat-label>Select a Source</mat-label>
+                  <mat-select id="sourceDesc" formControlName="sourceDesc">
+                    <mat-option *ngFor="let source of sources" [value]="source.sourceId">{{source.sourceDesc}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="numberOfBooths">Number of Booths:</label>
+                <input type="number" id="numberOfBooths" formControlName="numberOfBooths" placeholder="0" class="form-control" (change)="calculateTotalAndBalance($event)" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="costPerBooth">Cost Per Booth:</label>
+                <input type="number" id="costPerBooth" formControlName="costPerBooth" placeholder="0" class="form-control" (change)="calculateTotalAndBalance($event)" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="totalCost">Total Cost:</label>
+                <input id="totalCost" formControlName="totalCost" readonly placeholder="0" class="form-control" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-3">
+              <div class="form-group">
+                <label for="boothLoc1">Locations:</label>
+                <input type="text" id="boothLoc1" formControlName="boothLoc1" class="form-control" maxlength="12" />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="boothLoc2"></label>
+                <input type="text" id="boothLoc2" formControlName="boothLoc2" class="form-control" maxlength="12" />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="boothLoc3"></label>
+                <input type="text" id="boothLoc3" formControlName="boothLoc3" class="form-control" maxlength="12" />
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <label for="boothLoc4"></label>
+                <input type="text" id="boothLoc4" formControlName="boothLoc4" class="form-control" maxlength="12" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="depositReceived">Deposit Date:</label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                  </div>
+                  <input class="form-control datepicker" placeholder="Select date" name="depositReceived" id="depositReceived" formControlName="depositReceived" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+                </div>
+                <!--<mat-form-field appearance="fill">
+                <input matInput [matDatepicker]="depositReceived" formControlName="depositReceived">
+                <mat-datepicker-toggle matSuffix [for]="depositReceived"></mat-datepicker-toggle>
+                <mat-datepicker #depositReceived></mat-datepicker>
+              </mat-form-field>-->
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="depositAmount">Deposit Amount:</label>
+                <input type="number" id="depositAmount" formControlName="depositAmount" placeholder="0" class="form-control" (change)="calculateTotalAndBalance($event)" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="balanceDue">Balance Due:</label>
+                <input id="balanceDue" formControlName="balanceDue" readonly placeholder="0" class="form-control" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="confirmationSent">Confirmation Sent:</label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                  </div>
+                  <input class="form-control datepicker" placeholder="Select date" name="confirmationSent" id="confirmationSent" formControlName="confirmationSent" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="sponsoredEvents">Sponsored Event:</label>
+                <input type="text" id="sponsoredEvents" formControlName="sponsoredEvents" class="form-control" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="profile">Exhibitor Profile:</label>
+                <textarea id="profile" formControlName="profile" class="form-control"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group commands">
+          <button type="submit" *ngIf="exhibitorId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+          <button type="submit" *ngIf="!exhibitorId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Exhibitor</button>
+          <button type="submit" [routerLink]="['/exhibitors']" class="btn btn-default">Cancel</button>
+          <button type="button" *ngIf="exhibitorId" (click)="onDelete()" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="form-group">
+      <div class="jumbotron bg-secondary">
+        <app-exhibitor-notes></app-exhibitor-notes>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<div class="help-block">
+  {{ form.value | json }}
+</div>-->

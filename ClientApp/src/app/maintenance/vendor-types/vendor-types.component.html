@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-md-2">
+    <!--side menu for other maintenance items-->
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title class="heading-title text-warning text-center">Maintenance Items</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list role="list">
+          <a mat-list-item [routerLink]="'/addressTypes'">Address Types</a>
+          <a mat-list-item [routerLink]="'/AudioVisualItems'">Audio Visual Items</a>
+          <a mat-list-item [routerLink]="'/chargeTypes'">Charge Types</a>
+          <a mat-list-item [routerLink]="'/companyTypes'">Company Types</a>
+          <a mat-list-item [routerLink]="'/contactTypes'">Contact Types</a>
+          <a mat-list-item [routerLink]="'/creditTypes'">Credit Types</a>
+          <a mat-list-item [routerLink]="'/emailTypes'">Email Types</a>
+          <a mat-list-item [routerLink]="'/fbItems'">Food and Beverage</a>
+          <a mat-list-item [routerLink]="'/guestTypes'">Guest Types</a>
+          <a mat-list-item [routerLink]="'/mailingLists'">Mailing Lists</a>
+          <a mat-list-item [routerLink]="'/paymentMethods'">Payment Methods</a>
+          <a mat-list-item [routerLink]="'/paymentTypes'">Payment Types</a>
+          <a mat-list-item [routerLink]="'/roomSetups'">Room Setup Types</a>
+          <a mat-list-item [routerLink]="'/setupItems'">Setup Items</a>
+          <a mat-list-item [routerLink]="'/sources'">Source Types</a>
+          <a mat-list-item [routerLink]="'/speakerTypes'">Speaker Types</a>
+          <a mat-list-item [routerLink]="'/states'">States</a>
+          <a mat-list-item [routerLink]="'/taskTemplates'">Task Template</a>
+          <a mat-list-item [routerLink]="'/vendorTypes'">Vendor Types</a>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-md-10">
+    <!--main content-->
+    <h2 class="display-3">Vendor Types</h2>
+
+    <p *ngIf="!vendorTypes"><em>Loading...</em></p>
+
+    <div class="commands text-right">
+      <button type="submit" [routerLink]="['/vendorType']" class="btn btn-success">Add a new Vendor Type</button>
+    </div>
+
+    <mat-form-field [hidden]="!vendorTypes">
+      <input matInput (keyup)="loadData($event.target.value)"
+             placeholder="Filter by vendor Type Description...">
+    </mat-form-field>
+
+
+    <table mat-table [dataSource]="vendorTypes" class="mat-elevation-z8" [hidden]="!vendorTypes" matSort (matSortChange)="loadData()"
+           matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+      <ng-container matColumnDef="vendorTypeId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Vendor Type ID</th>
+        <td mat-cell *matCellDef="let vendorType">
+          {{vendorType.vendorTypeId}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Vendor Type Description</th>
+        <td mat-cell *matCellDef="let vendorType"><a [routerLink]="['/vendorType', vendorType.vendorTypeId]">{{vendorType.description}}</a></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+    </table>
+
+    <!--Pagination directive-->
+    <mat-paginator [hidden]="!vendorTypes" (page)="pageEvent = getData($event)" [pageSize]="10" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+
+  </div>
+</div>

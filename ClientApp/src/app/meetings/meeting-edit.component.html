@@ -1,0 +1,296 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.meetingCode && !meeting"><em>Loading...</em></p>
+
+<div class="row">
+  <div class="col-3">
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>Meeting Setup</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list role="list">
+          <mat-list-item>Registration Types</mat-list-item>
+          <mat-list-item>Registrations</mat-list-item>
+          <mat-list-item>Record Attendance</mat-list-item>
+          <mat-list-item>Speakers</mat-list-item>
+          <mat-list-item>Exhibitors</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+
+  <div class="form col-9" [formGroup]="form" (ngSubmit)="onSumbit()">
+    <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+      <strong>ERROR</strong>:
+      A Meeting with the same <i>meeting code</i> already exists.
+    </div>
+
+    <div class="form-group">
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="meetingCode">Meeting Code:</label>
+            <input type="text" id="meetingCode" formControlName="meetingCode" required placeholder="Meeting Code..." class="form-control" />
+            <div *ngIf="hasError('meetingCode')" class="invalid-feedback">
+              <div *ngIf="form.get('meetingCode').errors?.required">
+                Meeting Code is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="meetingDesc">Short Description:</label>
+            <input type="text" id="meetingDesc" formControlName="meetingDesc" required placeholder="Meeting Short Description..." class="form-control" />
+            <div *ngIf="hasError('meetingDesc')" class="invalid-feedback">
+              <div *ngIf="form.get('meetingDesc').errors?.required">
+                Meeting Short Description is required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3">
+          <div class="form-group">
+            <label for="meetingStartDate">Start Date:</label>
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                </div>
+                <input class="form-control datepicker" placeholder="Select date" name="meetingStartDate" id="meetingStartDate" formControlName="meetingStartDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+              </div>
+        </div>
+          </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label for="meetingStartTime">Start Time:</label>
+            <input type="text" id="meetingStartTime" formControlName="meetingStartTime" required placeholder="Meeting Start Time..." class="form-control" />
+            <div *ngIf="hasError('meetingStartTime')" class="invalid-feedback">
+              <div *ngIf="form.get('meetingStartTime').errors?.required">
+                Meeting Start Time is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label for="meetingEndDate">End Date:</label>
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+              </div>
+              <input class="form-control datepicker" placeholder="Select date" name="meetingEndDate" id="meetingEndDate" formControlName="meetingEndDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+            </div>
+            <!--<mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="meetingEndDate" formControlName="meetingEndDate">
+    <mat-datepicker-toggle matSuffix [for]="meetingEndDate"></mat-datepicker-toggle>
+    <mat-datepicker #meetingEndDate></mat-datepicker>
+  </mat-form-field>-->
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label for="meetingEndTime">End Time:</label>
+            <input type="text" id="meetingEndTime" formControlName="meetingEndTime" required placeholder="Meeting End Time..." class="form-control" />
+            <div *ngIf="hasError('meetingEndTime')" class="invalid-feedback">
+              <div *ngIf="form.get('meetingEndTime').errors?.required">
+                Meeting End Time is required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="longDescription">Long Description:</label>
+            <textarea id="longDescription" formControlName="longDescription" required placeholder="Meeting Long Description..." class="form-control"></textarea>
+            <div *ngIf="hasError('longDescription')" class="invalid-feedback">
+              <div *ngIf="form.get('longDescription').errors?.required">
+                Meeting Long Description is required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="meetingLocation">Meeting Location:</label>
+            <input type="text" id="meetingLocation" formControlName="meetingLocation" required placeholder="Meeting Location..." class="form-control" />
+            <div *ngIf="hasError('meetingLocation')" class="invalid-feedback">
+              <div *ngIf="form.get('meetingLocation').errors?.required">
+                Meeting Location is required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="meetingInstructions">Meeting Instructions:</label>
+            <textarea id="meetingInstructions" formControlName="meetingInstructions" placeholder="Meeting Instructions..." class="form-control"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="etrakMeetingImage">etrak Meeting Image:</label>
+            <input type="text" id="etrakMeetingImage" formControlName="etrakMeetingImage" placeholder="Etrak Meeting Image..." class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label for="earlyCancellationAmt">Early Cancellation Amount:</label>
+            <input type="text" id="earlyCancellationAmt" formControlName="earlyCancellationAmt" placeholder="Early Cancellation Amount..." class="form-control" />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="cancellationDate">Cancellation Date:</label>
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+              </div>
+              <input class="form-control datepicker" placeholder="Select date" name="cancellationDate" id="cancellationDate" formControlName="cancellationDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+            </div>
+            <!--<mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="cancellationDate" formControlName="cancellationDate">
+    <mat-datepicker-toggle matSuffix [for]="cancellationDate"></mat-datepicker-toggle>
+    <mat-datepicker #cancellationDate></mat-datepicker>
+  </mat-form-field>-->
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="lateCancellationAmt">Late Cancellation Amount:</label>
+            <input type="text" id="lateCancellationAmt" formControlName="lateCancellationAmt" placeholder="Late Cancellation Amount..." class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="sponsor">Sponsored By:</label>
+            <mat-form-field *ngIf="companies">
+              <mat-label>Select a Company</mat-label>
+              <mat-select id="sponsoredBy" formControlName="sponsoredBy">
+                <mat-option *ngFor="let company of companies" [value]="company.companyId">{{company.companyName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="sponsor">Sponsor ID:</label>
+            <input type="text" id="sponsor" formControlName="sponsor" placeholder="Sponsor ID..." class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="meetingDetailUrl">Meeting Detail URL:</label>
+            <input type="text" id="meetingDetailUrl" formControlName="meetingDetailUrl" placeholder="Meeting Detail URL..." class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3">
+          <div class="form-group">
+            <label for="gmtOffset">GMT Offset:</label>
+            <input type="text" id="gmtOffset" formControlName="gmtOffset" placeholder="GMT Offset..." class="form-control" />
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <div class="custom-control custom-checkbox mb-3">
+              <label for="allowWebReg" class="custom-control-label">Allow Web Registration?</label>
+              <input type="checkbox" id="allowWebReg" formControlName="allowWebReg" checked class="custom-control-input" ng-model="checked" />
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <div class="custom-control custom-checkbox mb-3">
+              <label for="allowWebGuests" class="custom-control-label">Allow Web Guest Registration?</label>
+              <input type="checkbox" id="allowWebGuests" formControlName="allowWebGuests" checked class="custom-control-input" />
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label for="webSortOrder">Web Sort Order:</label>
+            <select id="webSortOrder" formControlName="webSortOrder" class="form-control">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">13</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+            </select>
+
+          </div>
+        </div>
+      </div>
+
+      <!--end main form group div-->
+    </div>
+
+    <!--end form div-->
+    <div class="form-group commands">
+      <button type="submit" *ngIf="meetingCode" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+      <button type="submit" *ngIf="!meetingCode" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Meeting</button>
+      <button type="submit" [routerLink]="['/meetings']" class="btn btn-default">Cancel</button>
+      <button type="button" *ngIf="meetingCode" (click)="onDelete()" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+
+
+
+</div>
+
+<div class="help-block">
+  {{ form.value | json }}
+</div>
+

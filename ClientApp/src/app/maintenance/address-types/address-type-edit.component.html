@@ -1,0 +1,33 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.addressTypeId && !addressType"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+    <strong>ERROR</strong>:
+    An address type with the same <i>description</i> already exists.
+  </div>
+
+  <div class="form-group">
+    <label for="addressTypeDesc">Address Type Description:</label>
+    <input type="text" id="addressTypeDesc" formControlName="addressTypeDesc" required placeholder="Address Type Description..." class="form-control" />
+    <div *ngIf="hasError('addressTypeDesc')" class="invalid-feedback">
+      <div *ngIf="form.get('addressTypeDesc').errors?.required">
+        Address Type Description is required.
+      </div>
+    </div>
+
+    <!--<div *ngIf="form.get('addressTypeDesc').invalid && (form.get('addressTypeDesc').dirty || form.get('addressTypeDesc').touched)" class="invalid-feedback">
+      <div *ngIf="form.get('addressTypeDesc').errors?.required">
+        Address Type Description is required.
+      </div>
+    </div>-->
+  </div>
+</div>
+
+<div class="form-group commands">
+  <button type="submit" *ngIf="addressTypeId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+  <button type="submit" *ngIf="!addressTypeId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Address Type</button>
+  <button type="submit" [routerLink]="['/addressTypes']" class="btn btn-default">Cancel</button>
+  <button type="button" *ngIf="addressTypeId" (click)="onDelete()" class="btn btn-danger">Delete</button>
+</div>

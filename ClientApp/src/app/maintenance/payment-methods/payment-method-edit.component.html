@@ -1,0 +1,31 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.paymentMethodId && !paymentMethod"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+    <strong>ERROR</strong>:
+    A Payment Method with the same <i>description</i> already exists.
+  </div>
+
+  <div class="form-group">
+    <label for="paymentMethodDesc">Payment Method Description:</label>
+    <input type="text" id="paymentMethodDesc" formControlName="paymentMethodDesc" required placeholder="Payment Method Description..." class="form-control" />
+    <div *ngIf="hasError('paymentMethodDesc')" class="invalid-feedback">
+      <div *ngIf="form.get('paymentMethodDesc').errors?.required">
+        Payment Method Description is required.
+      </div>
+    </div>
+    <div class="custom-control custom-checkbox mb-3">
+      <input type="checkbox" id="allowOnWeb" formControlName="allowOnWeb" checked class="custom-control-input" ng-model="checked" />
+      <label for="allowOnWeb" class="custom-control-label">Allow on Web?</label>
+    </div>
+  </div>
+</div>
+
+<div class="form-group commands">
+  <button type="submit" *ngIf="paymentMethodId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+  <button type="submit" *ngIf="!paymentMethodId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Payment Method</button>
+  <button type="submit" [routerLink]="['/paymentMethods']" class="btn btn-default">Cancel</button>
+  <button type="button" *ngIf="paymentMethodId" (click)="onDelete()" class="btn btn-danger">Delete</button>
+</div>

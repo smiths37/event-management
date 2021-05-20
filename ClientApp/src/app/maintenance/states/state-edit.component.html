@@ -1,0 +1,38 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.stateCode && !state"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+    <strong>ERROR</strong>:
+    A state with the same <i>code</i> and <i>description</i> already exists.
+  </div>
+
+  <div class="form-group">
+    <label for="stateCode">State Code:</label>
+    <input type="text" id="stateCode" formControlName="stateCode" required placeholder="State Code..." class="form-control" maxlength="2" />
+    <div *ngIf="hasError('stateCode')" class="invalid-feedback">
+      <div *ngIf="form.get('stateCode').errors?.required">
+        State Code is required.
+      </div>
+    </div>
+
+    <label for="stateName">State Description:</label>
+    <input type="text" id="stateName" formControlName="stateName" required placeholder="State Description..." class="form-control" />
+    <div *ngIf="hasError('stateName')" class="invalid-feedback">
+      <div *ngIf="form.get('stateName').errors?.required">
+        State Name is required.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="form-group commands">
+  <button type="submit" *ngIf="stateCode" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+  <button type="submit" *ngIf="!stateCode" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New State</button>
+  <button type="submit" [routerLink]="['/states']" class="btn btn-default">Cancel</button>
+  <button type="button" *ngIf="stateCode" (click)="onDelete()" class="btn btn-danger">Delete</button>
+</div>

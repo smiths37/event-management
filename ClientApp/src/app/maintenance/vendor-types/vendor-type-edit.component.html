@@ -1,0 +1,28 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.vendorTypeId && !vendorType"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+    <strong>ERROR</strong>:
+    A Vendor Type with the same <i>description</i> already exists.
+  </div>
+
+  <div class="form-group">
+    <label for="description">Vendor Type Description:</label>
+    <input type="text" id="description" formControlName="description" required placeholder="Vendor Type Description..." class="form-control" />
+    <div *ngIf="hasError('description')" class="invalid-feedback">
+      <div *ngIf="form.get('description').errors?.required">
+        Vendor Type Description is required.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="form-group commands">
+  <button type="submit" *ngIf="vendorTypeId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+  <button type="submit" *ngIf="!vendorTypeId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Vendor Type</button>
+  <button type="submit" [routerLink]="['/vendorTypes']" class="btn btn-default">Cancel</button>
+  <button type="button" *ngIf="vendorTypeId" (click)="onDelete()" class="btn btn-danger">Delete</button>
+</div>

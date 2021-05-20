@@ -1,0 +1,53 @@
+.button + .button {
+  margin-left: 1rem;
+}
+table {
+  width: 100%;
+}
+.mat-table {
+    display: table;
+    width: 100%;
+}
+
+.mat-row {
+    height: auto;
+    min-width: 100%;
+}
+
+.mat-cell{
+    padding: 8px 8px 8px 0;
+}
+
+mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+input.ng-valid {
+  border-left: 5px solid green;
+}
+
+input.ng-invalid.ng-dirty,
+input.ng-invalid.ng-touched {
+  border-left: 5px solid red;
+}
+
+input.ng-valid ~ .valid-feedback,
+input.ng-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+.side-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+label {
+    
+    font-size: large;
+}
+

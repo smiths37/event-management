@@ -1,0 +1,80 @@
+<p *ngIf="!companyExhibitors"><em>Loading...</em></p>
+
+<table mat-table [dataSource]="companyExhibitors" class="mat-elevation-z8" [hidden]="!companyExhibitors" matSort (matSortChange)="loadData()"
+       matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+
+  <ng-container matColumnDef="meetingCode">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Meeting Code</th>
+    <td mat-cell *matCellDef="let exhibitor">
+      <a [routerLink]="['/exhibitor', exhibitor.companyId, exhibitor.meetingCode]">
+        {{exhibitor.meetingCode}}
+      </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="meetingStartDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Meeting Start Date</th>
+    <td mat-cell *matCellDef="let exhibitor">
+      {{exhibitor.meetingStartDate | date:'shortDate'}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="meetingEndDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Meeting End Date</th>
+    <td mat-cell *matCellDef="let exhibitor">
+      {{exhibitor.meetingEndDate | date:'shortDate'}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="booths">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Booths</th>
+    <td mat-cell *matCellDef="let exhibitor">
+      {{exhibitor.numberOfBooths}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="costPerBooth">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost/Booth</th>
+    <td mat-cell *matCellDef="let exhibitor">
+      {{exhibitor.costPerBooth | currency}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalCost">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Cost</th>
+    <td mat-cell *matCellDef="let exhibitor">
+      {{exhibitor.totalCost | currency}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="deposit">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Deposit</th>
+    <td mat-cell *matCellDef="let exhibitor">
+      {{exhibitor.depositAmount | currency}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="balance">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Balance</th>
+    <td mat-cell *matCellDef="let exhibitor">
+      {{exhibitor.balanceDue | currency}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="meetingDesc">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Meeting Name</th>
+    <td mat-cell *matCellDef="let exhibitor">
+      {{exhibitor.meetingShortDesc}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="meetingLocation">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Meeting Location</th>
+    <td mat-cell *matCellDef="let exhibitor">
+      {{exhibitor.meetingLocation}}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+</table>

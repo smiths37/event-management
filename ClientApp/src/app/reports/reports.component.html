@@ -1,0 +1,292 @@
+<h2 class="display-3">Reports</h2>
+
+<div class="commands text-right">
+  <button onclick="window.open('http://ctcrystal2.nvsc-ad.local:8080/BOE/BI', '_blank')" class="btn btn-primary">Go to Crystal Reports</button>
+</div>
+<p></p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Badges</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Badges'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Certificate Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Certificate Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Company Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Company Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Exhibitor Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Exhibitor Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Financial Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Financial Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Guest Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Guest Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>History Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'History Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Income Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Income Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Letters</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Letters'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Meeting Setup</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Meeting Setup Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Notes Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Notes Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>People Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'People Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Reference Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Reference Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Registration Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Registration Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Session Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Session Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Speaker Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Speaker Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Statistical Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Statistical Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4>Task Reports</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <ng-container *ngFor="let report of reports">
+        <mat-list-item *ngIf="report.reportGroup == 'Tasks Reports'">
+          <a href="{{report.reportLink}}" target="_blank">
+            {{report.reportName}}
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

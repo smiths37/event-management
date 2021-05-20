@@ -1,0 +1,26 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.companyTypeId && !companyType"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+    <strong>ERROR</strong>:
+    A company type with the same <i>description</i> already exists.
+  </div>
+
+  <div class="form-group">
+    <label for="companyTypeDesc">Company Type Description:</label>
+    <input type="text" id="companyTypeDesc" formControlName="companyTypeDesc" required placeholder="Company Type Description..." class="form-control" />
+    <div *ngIf="hasError('companyTypeDesc')" class="invalid-feedback">
+      <div *ngIf="form.get('companyTypeDesc').errors?.required">
+        Company Type Description is required.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-group commands">
+  <button type="submit" *ngIf="companyTypeId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+  <button type="submit" *ngIf="!companyTypeId" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Company Type</button>
+  <button type="submit" [routerLink]="['/companyTypes']" class="btn btn-default">Cancel</button>
+  <button type="button" *ngIf="companyTypeId" (click)="onDelete()" class="btn btn-danger">Delete</button>
+</div>

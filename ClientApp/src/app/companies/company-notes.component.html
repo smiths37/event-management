@@ -1,0 +1,31 @@
+<p *ngIf="!companyNotes"><em>Loading...</em></p>
+
+<table mat-table [dataSource]="companyNotes" class="mat-elevation-z8" [hidden]="!companyNotes" matSort (matSortChange)="loadData()"
+       matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Note Date</th>
+    <td mat-cell *matCellDef="let companyNote">
+      {{companyNote.noteDate | date: 'shortDate'}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="personResponsible">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Person Responsible</th>
+    <td mat-cell *matCellDef="let companyNote">
+      {{companyNote.personResponsible}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="note">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Note</th>
+    <td mat-cell *matCellDef="let companyNote">
+      <a [routerLink]="['/companyNote', companyNote.companyId, companyNote.noteId]">
+        {{companyNote.notes}}
+      </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+</table>

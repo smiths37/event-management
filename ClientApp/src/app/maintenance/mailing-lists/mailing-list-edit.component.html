@@ -1,0 +1,37 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.listCode && !mailingList"><em>Loading...</em></p>
+
+<div class="form" [formGroup]="form" (ngSubmit)="onSumbit()">
+  <div *ngIf="form.invalid && form.errors?.isDuplicate" class="alert alert-danger">
+    <strong>ERROR</strong>:
+    A mailing list with the same <i>code </i> and <i>name</i> already exists.
+  </div>
+
+  <div class="form-group">
+    <label for="listCode">Mailing List Code:</label>
+    <input type="text" id="listCode" formControlName="listCode" required placeholder="Mailing List Code..." class="form-control" />
+    <div *ngIf="hasError('listCode')" class="invalid-feedback">
+      <div *ngIf="form.get('listCode').errors?.required">
+        Mailing List Code is required.
+      </div>
+    </div>
+
+    <label for="listName">Mailing List Name:</label>
+    <input type="text" id="listName" formControlName="listName" required placeholder="Mailing List Description..." class="form-control" />
+    <div *ngIf="hasError('listName')" class="invalid-feedback">
+      <div *ngIf="form.get('listName').errors?.required">
+        Mailing List Name is required.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="form-group commands">
+  <button type="submit" *ngIf="listCode" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+  <button type="submit" *ngIf="!listCode" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Create New Mailing List</button>
+  <button type="submit" [routerLink]="['/mailingLists']" class="btn btn-default">Cancel</button>
+  <button type="button" *ngIf="listCode" (click)="onDelete()" class="btn btn-danger">Delete</button>
+</div>

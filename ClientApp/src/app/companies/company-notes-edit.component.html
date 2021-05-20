@@ -1,0 +1,95 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.noteId && !note"><em>Loading...</em></p>
+
+<div class="row">
+  <div class="col-12">
+    <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="noteDate">Note Date:</label>
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                </div>
+                <input class="form-control datepicker" placeholder="Select date" name="noteDate" id="noteDate" formControlName="noteDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+              </div>
+              <!--<mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="noteDate" formControlName="noteDate">
+    <mat-datepicker-toggle matSuffix [for]="noteDate"></mat-datepicker-toggle>
+    <mat-datepicker #noteDate></mat-datepicker>
+  </mat-form-field>-->
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="followUpDate">Follow Up Date:</label>
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                </div>
+                <input class="form-control datepicker" placeholder="Select date" name="followUpDate" id="followUpDate" formControlName="followUpDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+              </div>
+              <!--<mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="followUpDate" formControlName="followUpDate">
+    <mat-datepicker-toggle matSuffix [for]="followUpDate"></mat-datepicker-toggle>
+    <mat-datepicker #followUpDate></mat-datepicker>
+  </mat-form-field>-->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="personResponsible">Person Responsible:</label>
+              <input type="text" id="personResponsible" formControlName="personResponsible" placeholder="Person Responsible..." class="form-control" />
+            </div>
+          </div> 
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="notes">Notes:</label>
+              <textarea id="notes" formControlName="notes" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="dateCompleted">Date Completed:</label>
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                </div>
+                <input class="form-control datepicker" placeholder="Select date" name="dateCompleted" id="dateCompleted" formControlName="dateCompleted" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+              </div>
+              <!--<mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="dateCompleted" formControlName="dateCompleted">
+    <mat-datepicker-toggle matSuffix [for]="dateCompleted"></mat-datepicker-toggle>
+    <mat-datepicker #dateCompleted></mat-datepicker>
+  </mat-form-field>-->
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="completedBy">Completed By:</label>
+              <input type="text" id="completedBy" formControlName="completedBy" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group commands">
+      <button type="submit" (click)="onSubmit()" class="btn btn-success" *ngIf="!noteId" [disabled]="form.invalid">Create Note</button>
+      <button type="submit" (click)="onSubmit()" class="btn btn-success" *ngIf="noteId" [disabled]="form.invalid">Save</button>
+      <button type="submit" [routerLink]="['/company', companyId]" class="btn btn-default">Cancel</button>
+      <button type="button" *ngIf="noteId" (click)="onDelete()" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</div>
+
+
+

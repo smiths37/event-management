@@ -1,0 +1,313 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="!person"><em>Loading...</em></p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title class="heading-title text-warning text-center">Person Maintenance</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list role="list">
+            <a mat-list-item [routerLink]="['/personAddress', personId]">Add Address</a>
+            <a mat-list-item [routerLink]="['/personRegistration', personId]">Add Registration</a>
+            <a mat-list-item [routerLink]="['/speaker']">Add Speaker</a>
+            <a mat-list-item [routerLink]="['/exhibitor']">Add Exhibitor</a>
+            <a mat-list-item [routerLink]="['/personEmail', personid]">Add Email</a>
+            <a mat-list-item [routerLink]="['/personNote', personId]">Add Note</a>
+            <a mat-list-item [routerLink]="['/personList', personId]">Add List</a>
+            <a mat-list-item [routerLink]="['/personCreditType', personId]">Add Credit Type</a>
+            <a mat-list-item [routerLink]="['/personUserFields', personId]">HR User Fields</a>
+            <a mat-list-item [routerLink]="['/personAwards', personId]">Award Dates</a>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="ssn">Bar Number:</label>
+                <input type="text" id="ssn" formControlName="ssn" placeholder="Bar Number..." class="form-control" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="namePrefix">Prefix:</label>
+                <input type="text" id="namePrefix" formControlName="namePrefix" placeholder="Prefix..." class="form-control" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstname" formControlName="firstName" required placeholder="First Name..." class="form-control" />
+                <div *ngIf="hasError('firstName')" class="invalid-feedback">
+                  <div *ngIf="form.get('firstName').errors?.required">
+                    First Name is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="middleName">Middle Name:</label>
+                <input type="text" id="middleName" formControlName="middleName" placeholder="Middle Name..." class="form-control" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" formControlName="lastName" required placeholder="Last Name..." class="form-control" />
+                <div *ngIf="hasError('lastName')" class="invalid-feedback">
+                  <div *ngIf="form.get('lastName').errors?.required">
+                    Last Name is required.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="nameSuffix">Suffix:</label>
+                <input type="text" id="nameSuffix" formControlName="nameSuffix" placeholder="Suffix..." class="form-control" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="badgeName">Badge Name:</label>
+                <input type="text" id="badgeName" formControlName="badgeName" placeholder="Badge Name..." class="form-control" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="companyName">Company Name:</label>
+                <mat-form-field *ngIf="companies">
+                  <mat-label>Select a Company</mat-label>
+                  <mat-select id="companyName" formControlName="companyName">
+                    <mat-option *ngFor="let company of companies" [value]="company.companyId">{{company.companyName}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" formControlName="title" placeholder="Title..." class="form-control" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="dept">Department:</label>
+                <input type="text" id="dept" formControlName="dept" placeholder="Department..." class="form-control" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="peopleType">People Type:</label>
+                <mat-form-field *ngIf="peopleTypes">
+                  <mat-label>Select a People Type</mat-label>
+                  <mat-select id="peopleType" formControlName="peopleType">
+                    <mat-option *ngFor="let peopleType of peopleTypes" [value]="peopleType.peopleTypeId">{{peopleType.peopleTypeDesc}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="salutation">Salutation:</label>
+                <input type="text" id="salutation" formControlName="salutation" placeholder="Salutation..." class="form-control" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="contactType">Contact Type:</label>
+                <mat-form-field *ngIf="contactTypes">
+                  <mat-label>Select a Contact Type</mat-label>
+                  <mat-select id="contactType" formControlName="contactType">
+                    <mat-option *ngFor="let contactType of contactTypes" [value]="contactType.contactTypeId">{{contactType.contactTypeDesc}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" formControlName="email" placeholder="Email..." class="form-control" />
+                <!--<a href="" id="emailButton"><fa-icon [icon]="envelope" size="lg" matListAvatar></fa-icon></a>-->
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="source">Source:</label>
+                <mat-form-field *ngIf="sources">
+                  <mat-label>Select a Source</mat-label>
+                  <mat-select id="source" formControlName="source">
+                    <mat-option *ngFor="let source of sources" [value]="source.sourceId">{{source.sourceDesc}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <div class="custom-control custom-checkbox mb-3">
+                  <label for="doNotMail" class="custom-control-label">Do Not Mail</label>
+                  <input type="checkbox" id="doNotMail" formControlName="doNotMail" checked class="custom-control-input" ng-model="not-checked" />
+                  <span class="form-check-sign"></span>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="mailPref">Mail Preference:</label>
+                <mat-form-field>
+                  <mat-label>Select a Mail Preference</mat-label>
+                  <mat-select id="mailPref" formControlName="mailPref">
+                    <mat-option value="Email">Email</mat-option>
+                    <mat-option value="Paper">Paper</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="cellPhone">Cell Phone:</label>
+                <input type="text" id="Cell Phone" formControlName="cellPhone" placeholder="Cell Phone..." class="form-control" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="formalTitle">Formal Title:</label>
+                <input type="text" id="formalTitle" formControlName="formalTitle" placeholder="Formal Title..." class="form-control" />
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group commands">
+          <button type="submit" (click)="onSubmit()" class="btn btn-success" *ngIf="!personId" [disabled]="form.invalid">Create Person</button>
+          <button type="submit" (click)="onSubmit()" class="btn btn-success" *ngIf="personId" [disabled]="form.invalid">Save</button>
+          <button type="submit" [routerLink]="['/people']" class="btn btn-default">Cancel</button>
+          <!--Should there be an option to delete a person?-->
+        </div>
+      </div>
+      </div>
+  </div>
+</div>
+
+
+
+  <!--main content below side menu-->
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <mat-tab-group mat-align-tabs="start">
+          <mat-tab label="Addresses">
+            <!--Display Person Addresses Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Registration">
+            <!--Display Person Registration Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Registration History">
+            <!--Display the Person Registration History Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Speakers">
+            <!--Display Person Speakers Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Exhibitors">
+            <!--Display Person Exhibitors Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Email">
+            <!--Display Person Email Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Notes">
+            <!--Display Person Notes Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Lists">
+            <!--Display Person Lists Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="CR Types">
+            <!--Display Person CR Types Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="CR History">
+            <!--Display Person CR History Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="User">
+            <!--Display Person User Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Award Date">
+            <!--Display Person Award Date Component-->
+            <div class="jumbotron bg-secondary">
+
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+  <div class="row"></div>
+
+<!--<div class="help-block">
+  {{ form.value | json }}
+</div>-->
