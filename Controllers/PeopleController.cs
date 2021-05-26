@@ -120,5 +120,29 @@ namespace MeetingTrak.Controllers
             return _context.TblPeople.Any(e => e.PersonId == id);
         }
 
+        [HttpGet]
+        [Route("getAddresses/{id}")]
+        public ActionResult<List<MeetingTrak.Data.DTOs.PersonAddressDTO>> getAddresses(int id)
+        {
+            List<MeetingTrak.Data.DTOs.PersonAddressDTO> addresses = _context.TblPeopleAddresses.Where(e => e.PersonId == id).Select(e => new MeetingTrak.Data.DTOs.PersonAddressDTO()
+            {
+                addressId = e.AddressId,
+                companyId = e.CompanyId,
+                primary = e.Primary,
+                phone = e.Phone,
+                extension = e.Extension,
+                fax = e.Fax,
+                addressTypeDesc = e.AddressTypeNavigation.AddressTypeDesc,
+                address1 = e.Address1,
+                address2 = e.Address2,
+                city = e.City,
+                stateName = e.StateNavigation.StateName,
+                countryName = e.Country.CountryName,
+                zip = e.Zip
+            }).ToList();
+
+            return addresses;
+        }
+
     }
 }

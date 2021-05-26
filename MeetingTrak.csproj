@@ -10,6 +10,9 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <Authors>Sarah Smith</Authors>
+    <Company>Supreme Court of Nevada</Company>
   </PropertyGroup>
 
   <ItemGroup>
@@ -112,7 +115,14 @@
     <None Remove="ClientApp\src\app\meetings\meeting-service.ts" />
     <None Remove="ClientApp\src\app\meetings\meeting.ts" />
     <None Remove="ClientApp\src\app\people\people.component.ts" />
+    <None Remove="ClientApp\src\app\people\person-address-edit.component.ts" />
+    <None Remove="ClientApp\src\app\people\person-address.service.ts" />
+    <None Remove="ClientApp\src\app\people\person-address.ts" />
+    <None Remove="ClientApp\src\app\people\person-addresses.component.ts" />
+    <None Remove="ClientApp\src\app\people\person-company-address.ts" />
     <None Remove="ClientApp\src\app\people\person-edit.component.ts" />
+    <None Remove="ClientApp\src\app\people\person-email.service.ts" />
+    <None Remove="ClientApp\src\app\people\person-email.ts" />
     <None Remove="ClientApp\src\app\people\person.service.ts" />
     <None Remove="ClientApp\src\app\people\person.ts" />
     <None Remove="ClientApp\src\app\reports\report.service.ts" />
@@ -192,8 +202,15 @@
     <TypeScriptCompile Include="ClientApp\src\app\maintenance\vendor-types\vendor-type.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\meetings\meeting-service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\meetings\meeting.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\people\person-address.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\people\people.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\people\person-address.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\people\person-address-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\people\person-addresses.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\people\person-company-address.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\people\person-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\people\person-email.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\people\person-email.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\people\person.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\people\person.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\reports\report.service.ts" />

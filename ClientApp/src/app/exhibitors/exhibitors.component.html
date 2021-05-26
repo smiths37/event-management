@@ -1,41 +1,44 @@
-<h2 class="display-3">Exhibitors</h2>
+<div class="container">
+  <h2 class="display-3">Exhibitors</h2>
 
-<p *ngIf="!exhibitors"><em>Loading...</em></p>
+  <p *ngIf="!exhibitors"><em>Loading...</em></p>
 
-<div class="commands text-right">
-  <button type="submit" [routerLink]="['/exhibitor']" class="btn btn-success">Add a new Exhibitor</button>
+  <div class="commands text-right">
+    <button type="submit" [routerLink]="['/exhibitor']" class="btn btn-success">Add a new Exhibitor</button>
+  </div>
+
+  <mat-form-field [hidden]="!exhibitors">
+    <input matInput (keyup)="loadData($event.target.value)"
+           placeholder="Filter by Meeting Code...">
+  </mat-form-field>
+
+
+  <table mat-table [dataSource]="exhibitors" class="mat-elevation-z8" [hidden]="!exhibitors" matSort (matSortChange)="loadData()"
+         matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+
+    <ng-container matColumnDef="meetingCode">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Meeting Code</th>
+      <td mat-cell *matCellDef="let exhibitor">
+        <a [routerLink]="['/exhibitor', exhibitor.companyId, exhibitor.meetingCode, exhibitor.exhibitorId]">{{exhibitor.meetingCode}}</a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="companyName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Company</th>
+      <td mat-cell *matCellDef="let exhibitor">{{exhibitor.companyName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="personName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Person</th>
+      <td mat-cell *matCellDef="let exhibitor">{{(exhibitor.personFirstName == NULL ? '' : exhibitor.personFirstName) + ' ' + (exhibitor.personLastName == NULL ? '' : exhibitor.personLastName)}}</td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+  </table>
+
+  <!--Pagination directive-->
+  <mat-paginator [hidden]="!exhibitors" (page)="pageEvent = getData($event)" [pageSize]="10" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+
 </div>
-
-<mat-form-field [hidden]="!exhibitors">
-  <input matInput (keyup)="loadData($event.target.value)"
-         placeholder="Filter by Meeting Code...">
-</mat-form-field>
-
-
-<table mat-table [dataSource]="exhibitors" class="mat-elevation-z8" [hidden]="!exhibitors" matSort (matSortChange)="loadData()"
-       matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
-
-  <ng-container matColumnDef="meetingCode"> 
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Meeting Code</th>
-    <td mat-cell *matCellDef="let exhibitor">
-      <a [routerLink]="['/exhibitor', exhibitor.companyId, exhibitor.meetingCode, exhibitor.exhibitorId]">{{exhibitor.meetingCode}}</a>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="companyName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Company</th>
-    <td mat-cell *matCellDef="let exhibitor">{{exhibitor.companyName}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="personName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Person</th>
-    <td mat-cell *matCellDef="let exhibitor">{{(exhibitor.personFirstName == NULL ? '' : exhibitor.personFirstName) + ' ' + (exhibitor.personLastName == NULL ? '' : exhibitor.personLastName)}}</td>
-  </ng-container>
-
-
-  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
-</table>
-
-<!--Pagination directive-->
-<mat-paginator [hidden]="!exhibitors" (page)="pageEvent = getData($event)" [pageSize]="10" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>

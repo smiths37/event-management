@@ -1,117 +1,120 @@
-<h2 class="display-3">Setup and Maintenance</h2>
+<div class="container">
+  <h2 class="display-3">Setup and Maintenance</h2>
 
-<mat-list>
-  <mat-list-item>
-    <fa-icon [icon]="faMapMarkedAlt" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/addressTypes']">Address Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faPhotoVideo" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/AudioVisualItems']">Audio Visual Items</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <!--<mat-list-item>
-    <fa-icon [icon]="faMailBulk" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/']">Broadcast Letters</a></h4>
-  </mat-list-item>-->
-  <!--<mat-divider></mat-divider>-->
-  <mat-list-item>
-    <fa-icon [icon]="faFileInvoiceDollar" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/chargeTypes']">Charge Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faBuilding" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/companyTypes']">Company Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faAddressCard" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/contactTypes']">Contact Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faAward" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/creditTypes']">Credit Types</a></h4>
-  </mat-list-item>
-  <!--<mat-divider></mat-divider>-->
-  <mat-divider></mat-divider>
-  <!--<mat-list-item>
-    <fa-icon [icon]="faEnvelopeOpenText" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/defaultLetterSetup']">Default Letter Setup</a></h4>
-  </mat-list-item>-->
- <!-- <mat-divider></mat-divider>-->
-  <!--<mat-divider></mat-divider>-->
-  <mat-list-item>
-    <fa-icon [icon]="faInbox" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/emailTypes']">Email Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faUtensils" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/fbItems']">Food and Beverage</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faUserPlus" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/guestTypes']">Guest Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faAddressBook" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/mailingLists']">Mailing Lists</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faDollarSign" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/paymentMethods']">Payment Methods</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faFileInvoice" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/paymentTypes']">Payment Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faUser" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/peopleTypes']">People Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faPeopleCarry" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/roomSetups']">Room Setup Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faChair" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/setupItems']">Setup Items</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faSearchLocation" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/sources']">Source Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faChalkboardTeacher" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/speakerTypes']">Speaker Types</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faFlagUsa" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/states']">States</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faListOl" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/taskTemplate']">Task Template</a></h4>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-divider></mat-divider>
-  <mat-list-item>
-    <fa-icon [icon]="faStore" size="lg" matListAvatar></fa-icon>
-    <h4><a class="text-dark" [routerLink]="['/vendorTypes']">Vendor Types</a></h4>
-  </mat-list-item>
-</mat-list>
+  <mat-list>
+    <mat-list-item>
+      <fa-icon [icon]="faMapMarkedAlt" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/addressTypes']">Address Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faPhotoVideo" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/AudioVisualItems']">Audio Visual Items</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <!--<mat-list-item>
+      <fa-icon [icon]="faMailBulk" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/']">Broadcast Letters</a></h4>
+    </mat-list-item>-->
+    <!--<mat-divider></mat-divider>-->
+    <mat-list-item>
+      <fa-icon [icon]="faFileInvoiceDollar" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/chargeTypes']">Charge Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faBuilding" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/companyTypes']">Company Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faAddressCard" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/contactTypes']">Contact Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faAward" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/creditTypes']">Credit Types</a></h4>
+    </mat-list-item>
+    <!--<mat-divider></mat-divider>-->
+    <mat-divider></mat-divider>
+    <!--<mat-list-item>
+      <fa-icon [icon]="faEnvelopeOpenText" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/defaultLetterSetup']">Default Letter Setup</a></h4>
+    </mat-list-item>-->
+    <!-- <mat-divider></mat-divider>-->
+    <!--<mat-divider></mat-divider>-->
+    <mat-list-item>
+      <fa-icon [icon]="faInbox" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/emailTypes']">Email Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faUtensils" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/fbItems']">Food and Beverage</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faUserPlus" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/guestTypes']">Guest Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faAddressBook" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/mailingLists']">Mailing Lists</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faDollarSign" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/paymentMethods']">Payment Methods</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faFileInvoice" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/paymentTypes']">Payment Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faUser" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/peopleTypes']">People Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faPeopleCarry" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/roomSetups']">Room Setup Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faChair" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/setupItems']">Setup Items</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faSearchLocation" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/sources']">Source Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faChalkboardTeacher" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/speakerTypes']">Speaker Types</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faFlagUsa" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/states']">States</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faListOl" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/taskTemplate']">Task Template</a></h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <fa-icon [icon]="faStore" size="lg" matListAvatar></fa-icon>
+      <h4><a class="text-dark" [routerLink]="['/vendorTypes']">Vendor Types</a></h4>
+    </mat-list-item>
+  </mat-list>
 
+
+</div>

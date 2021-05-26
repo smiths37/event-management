@@ -12,6 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { MatCardModule } from '@angular/material/card';
     MatNativeDateModule,
     MatExpansionModule,
     MatCardModule,
+    MatRadioModule
   ],
   exports: [
     MatTableModule,
@@ -42,7 +44,8 @@ import { MatCardModule } from '@angular/material/card';
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    MatRadioModule
   ]
 })
 

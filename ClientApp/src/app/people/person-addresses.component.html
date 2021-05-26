@@ -1,0 +1,52 @@
+<p *ngIf="!personAddresses"><em>Loading...</em></p>
+
+<table mat-table [dataSource]="personAddresses" class="mat-elevation-z8" [hidden]="!personAddresses" matSort (matSortChange)="loadData()"
+       matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+
+  <ng-container matColumnDef="primary">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Primary</th>
+    <td mat-cell *matCellDef="let personAddress">
+      {{personAddress.primary == true ? 'Y' : ''}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="addressType">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+    <td mat-cell *matCellDef="let personAddress">
+      {{personAddress.addressTypeDesc}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fullAddress">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th> 
+    <td mat-cell *matCellDef="let personAddress">
+      <a [routerLink]="['/personAddress', personAddress.addressId, this.personId]">
+        {{personAddress.address1 + ', ' + (personAddress.address2 == NULL ? '' : personAddress.address2 + ', ') + personAddress.city + ', ' + (personAddress.stateName == NULL ? '' : personAddress.stateName) + ' ' + (personAddress.zip == NULL ? '' : personAddress.zip) }}
+      </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+    <td mat-cell *matCellDef="let personAddress">
+      {{personAddress.phone}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="extension">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Extension</th>
+    <td mat-cell *matCellDef="let personAddress">
+      {{personAddress.extension}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fax">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Fax</th>
+    <td mat-cell *matCellDef="let personAddress">
+      {{personAddress.fax}}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+</table>

@@ -16,15 +16,26 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { MaintenanceSideNavigation } from './maintenance-nav-menu/maintenance-nav-menu.component';
 
-//Main screen components
+//people components
 import { PeopleComponent } from './people/people.component';
 import { PersonEditComponent } from './people/person-edit.component';
+import { PersonAddressesComponent } from './people/person-addresses.component';
+import { PersonAddressEditComponent } from './people/person-address-edit.component';
+import { PersonCompanyAddressComponent } from './people/person-company-address';
+
+//meeting components
 import { MeetingsComponent } from './meetings/meetings.component';
 import { MeetingEditComponent } from './meetings/meeting-edit.component';
-import { SessionsComponent } from './sessions/sessions.component';
+
+//session components
+import { SessionsComponent } from './sessions/sessions.component'; 
 import { SessionEditComponent } from './sessions/session-edit.component';
+
+//speaker components
 import { SpeakersComponent } from './speakers/speakers.component';
 import { SpeakerEditComponent } from './speakers/speaker-edit.component';
+
+//exhibitor components
 import { ExhibitorsComponent } from './exhibitors/exhibitors.component';
 import { ExhibitorEditComponent } from './exhibitors/exhibitor-edit.component';
 import { ExhibitorNoteComponent } from './exhibitors/exhibitor-notes.component';
@@ -121,6 +132,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
     PeopleComponent,
     PersonEditComponent,
+    PersonAddressesComponent,
+    PersonAddressEditComponent,
+    PersonCompanyAddressComponent,
+
     MeetingsComponent,
     MeetingEditComponent,
     SessionsComponent,
@@ -212,6 +227,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       { path: 'people', component: PeopleComponent },
       { path: 'person', component: PersonEditComponent },
       { path: 'person/:personId', component: PersonEditComponent },
+      { path: 'personAddress/:addressId/:personId', component: PersonAddressEditComponent },
+      { path: 'personAddress/:personId', component: PersonAddressEditComponent },
+      { path: 'personCompanyAddress/:personId/:companyId', component: PersonCompanyAddressComponent },
 
       { path: 'meetings', component: MeetingsComponent },
       { path: 'meeting', component: MeetingEditComponent },

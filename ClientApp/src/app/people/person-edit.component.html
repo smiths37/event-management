@@ -11,7 +11,8 @@
         </mat-card-header>
         <mat-card-content>
           <mat-list role="list">
-            <a mat-list-item [routerLink]="['/personAddress', personId]">Add Address</a>
+            <a mat-list-item [routerLink]="['/personAddress', personId]">Add Address</a> 
+            <a mat-list-item *ngIf="this.companyId != null" [routerLink]="['/personCompanyAddress', personId, companyId]">Copy Company Address</a>
             <a mat-list-item [routerLink]="['/personRegistration', personId]">Add Registration</a>
             <a mat-list-item [routerLink]="['/speaker']">Add Speaker</a>
             <a mat-list-item [routerLink]="['/exhibitor']">Add Exhibitor</a>
@@ -233,7 +234,7 @@
           <mat-tab label="Addresses">
             <!--Display Person Addresses Component-->
             <div class="jumbotron bg-secondary">
-
+              <app-person-addresses></app-person-addresses>
             </div>
           </mat-tab>
           <mat-tab label="Registration">

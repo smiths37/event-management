@@ -33,6 +33,7 @@ export class PersonEditComponent extends BaseFormComponent implements OnInit {
   form: FormGroup;
   person: Person;
   personId?: number;
+  companyId?: number;
 
   sources: Source[];
   peopleTypes: PeopleType[];
@@ -91,6 +92,9 @@ export class PersonEditComponent extends BaseFormComponent implements OnInit {
           this.title = "Edit " + this.person.firstName + " " + this.person.lastName;
 
           this.form.patchValue(this.person);
+
+          this.companyId = this.person.companyId;
+          console.log('Company Id:' + this.companyId);
 
           console.log(this.person);
 
