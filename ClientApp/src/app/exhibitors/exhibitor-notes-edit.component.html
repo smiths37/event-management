@@ -14,7 +14,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                 </div>
-                <input class="form-control datepicker" placeholder="Select date" name="noteDate" id="noteDate" formControlName="noteDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+                <input class="form-control datepicker" placeholder="Select date" name="noteDate" id="noteDate" formControlName="noteDate" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" type="text" [(ngModel)]="noteDateModel" />
               </div>
               <!--<mat-form-field appearance="fill">
     <input matInput [matDatepicker]="noteDate" formControlName="noteDate">
@@ -30,7 +30,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                 </div>
-                <input class="form-control datepicker" placeholder="Select date" name="followUpDate" id="followUpDate" formControlName="followUpDate" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+                <input class="form-control datepicker" placeholder="Select date" name="followUpDate" id="followUpDate" formControlName="followUpDate" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()" type="text" [(ngModel)]="followUpDateModel" />
               </div>
               <!--<mat-form-field appearance="fill">
     <input matInput [matDatepicker]="followUpDate" formControlName="followUpDate">
@@ -64,7 +64,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                 </div>
-                <input class="form-control datepicker" placeholder="Select date" name="dateCompleted" id="dateCompleted" formControlName="dateCompleted" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+                <input class="form-control datepicker" placeholder="Select date" name="dateCompleted" id="dateCompleted" formControlName="dateCompleted" ngbDatepicker #d3="ngbDatepicker" (click)="d3.toggle()" type="text" [(ngModel)]="completedDateModel" />
               </div>
               <!--<mat-form-field appearance="fill">
     <input matInput [matDatepicker]="dateCompleted" formControlName="dateCompleted">

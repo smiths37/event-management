@@ -4032,7 +4032,7 @@ namespace MeetingTrak.Data.Models
                     .IsConcurrencyToken();
 
                 var creditTypeBuilder = modelBuilder.Entity<TblCreditTypes>();
-                creditTypeBuilder.Property(i => i.CreditTypeId).UseSqlServerIdentityColumn();
+                creditTypeBuilder.Property(i => i.CreditTypeId).UseIdentityColumn();
                 creditTypeBuilder.Property(i => i.CreditTypeId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
 
@@ -5610,7 +5610,7 @@ namespace MeetingTrak.Data.Models
                     .HasConstraintName("tblExhibitors_FK01");
 
                 var exhibitorsBuilder = modelBuilder.Entity<TblExhibitors>();
-                exhibitorsBuilder.Property(i => i.ExhibitorId).UseSqlServerIdentityColumn();
+                exhibitorsBuilder.Property(i => i.ExhibitorId).UseIdentityColumn();
                 exhibitorsBuilder.Property(i => i.ExhibitorId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             });
 
@@ -6914,7 +6914,7 @@ namespace MeetingTrak.Data.Models
                     .IsConcurrencyToken();
 
                 var listsBuilder = modelBuilder.Entity<TblLists>();
-                listsBuilder.Property(i => i.ListId).UseSqlServerIdentityColumn();
+                listsBuilder.Property(i => i.ListId).UseIdentityColumn();
                 listsBuilder.Property(i => i.ListId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             });
 
@@ -8983,8 +8983,8 @@ namespace MeetingTrak.Data.Models
 
             modelBuilder.Entity<TblPeopleEmails>(entity =>
             {
-                entity.HasKey(e => new { e.PersonId, e.EmailAddress })
-                    .IsClustered(false);
+                //entity.HasKey(e => new { e.PersonId, e.EmailAddress })
+                //    .IsClustered(false);
 
                 entity.ToTable("tblPeopleEMails");
 
@@ -9013,6 +9013,18 @@ namespace MeetingTrak.Data.Models
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("tblPeopleEMails_FK00");
+
+                entity.Property(e => e.emailId)
+                   .HasColumnName("emailID")
+                   .ValueGeneratedOnAdd();
+
+                entity.HasKey(e => e.emailId)
+                .HasName("PK__tblPeopl__87355E524BB6DE91")
+                .IsClustered(false);
+
+                //var peopleEmailBuilder = modelBuilder.Entity<TblPeopleEmails>();
+                //peopleEmailBuilder.Property(i => i.emailId).UseIdentityColumn();
+                //peopleEmailBuilder.Property(i => i.emailId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             });
 
             modelBuilder.Entity<TblPeopleSourceCodes>(entity =>
@@ -11093,7 +11105,7 @@ namespace MeetingTrak.Data.Models
                     .IsUnicode(false);
 
                 var statesBuilder = modelBuilder.Entity<TblStates>();
-                statesBuilder.Property(i => i.StateId).UseSqlServerIdentityColumn();
+                statesBuilder.Property(i => i.StateId).UseIdentityColumn();
                 statesBuilder.Property(i => i.StateId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             });
 

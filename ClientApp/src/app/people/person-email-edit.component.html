@@ -1,6 +1,6 @@
 <h2 class="display-3">{{title}}</h2>
 
-<p *ngIf="this.emailId && !email"><em>Loading...</em></p>
+<p *ngIf="this.emailAddress && !email"><em>Loading...</em></p>
 
 <div class="row">
   <div class="col-12">
@@ -42,7 +42,7 @@
     <div class="form-group commands">
       <button type="submit" (click)="onSubmit()" class="btn btn-success" *ngIf="!emailId" [disabled]="form.invalid">Create Email</button>
       <button type="submit" (click)="onSubmit()" class="btn btn-success" *ngIf="emailId" [disabled]="form.invalid">Save</button>
-      <button type="submit" [routerLink]="['/company', companyId]" class="btn btn-default">Cancel</button>
+      <button type="submit" [routerLink]="['/person', personId]" class="btn btn-default">Cancel</button>
       <button type="button" *ngIf="emailId" (click)="onDelete()" class="btn btn-danger">Delete</button>
     </div>
 

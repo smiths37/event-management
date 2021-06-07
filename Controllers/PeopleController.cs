@@ -144,5 +144,21 @@ namespace MeetingTrak.Controllers
             return addresses;
         }
 
+        [HttpGet]
+        [Route("getEmails/{id}")]
+        public ActionResult<List<MeetingTrak.Data.DTOs.PeopleEmailDTO>> getEmails(int id)
+        {
+            List<MeetingTrak.Data.DTOs.PeopleEmailDTO> emails = _context.TblPeopleEmails.Select(e => new MeetingTrak.Data.DTOs.PeopleEmailDTO()
+            {
+                personId = e.PersonId,
+                emailAddress = e.EmailAddress,
+                emailId = e.emailId,
+                emailTypeDesc = e.EmailTypeNavigation.EmailTypeDesc
+            }).Where(e => e.personId == id).ToList();
+
+            return emails;
+        }
+
+
     }
 }

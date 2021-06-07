@@ -22,6 +22,10 @@ import { PersonEditComponent } from './people/person-edit.component';
 import { PersonAddressesComponent } from './people/person-addresses.component';
 import { PersonAddressEditComponent } from './people/person-address-edit.component';
 import { PersonCompanyAddressComponent } from './people/person-company-address';
+import { PersonEmailComponent } from './people/person-email.component';
+import { PersonEmailEditComponent } from './people/person-email-edit.component';
+import { PersonNoteComponent } from './people/person-notes.component';
+import { PersonNoteEditComponent } from './people/person-notes-edit.component';
 
 //meeting components
 import { MeetingsComponent } from './meetings/meetings.component';
@@ -135,6 +139,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PersonAddressesComponent,
     PersonAddressEditComponent,
     PersonCompanyAddressComponent,
+    PersonEmailComponent,
+    PersonEmailEditComponent,
+    PersonNoteComponent,
+    PersonNoteEditComponent,
 
     MeetingsComponent,
     MeetingEditComponent,
@@ -230,6 +238,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       { path: 'personAddress/:addressId/:personId', component: PersonAddressEditComponent },
       { path: 'personAddress/:personId', component: PersonAddressEditComponent },
       { path: 'personCompanyAddress/:personId/:companyId', component: PersonCompanyAddressComponent },
+      { path: 'personEmails', component: PersonEmailComponent },
+      { path: 'personEmail/:personId', component: PersonEmailEditComponent },
+      { path: 'personEmail/:personId/:emailId', component: PersonEmailEditComponent },
+      { path: 'personNotes', component: PersonNoteComponent },
+      { path: 'personNote/:personId', component: PersonNoteEditComponent },
+      { path: 'personNote/:personId/:noteId', component: PersonNoteEditComponent },
 
       { path: 'meetings', component: MeetingsComponent },
       { path: 'meeting', component: MeetingEditComponent },

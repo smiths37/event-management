@@ -125,5 +125,13 @@ namespace MeetingTrak.Controllers
             
             return exhibitorNotes;
         }
+
+        [HttpGet]
+        [Route("getPersonNotes/{id}")]
+        public ActionResult<List<TblNotes>> getPersonNotes(int id)
+        {
+            List<TblNotes> personNotes = _context.TblNotes.Where(e => e.PersonId != null && e.PersonId == id).ToList();
+            return personNotes;
+        }
     }
 }

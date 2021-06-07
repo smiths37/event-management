@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 import { ExhibitorNote } from './exhibitor-note';
 import { ExhibitorNoteService } from './exhibitor-note.service';
@@ -32,6 +32,9 @@ export class ExhibitorNoteEditComponent extends BaseFormComponent implements OnI
   exhibitorId?: number;
   companyId?: number;
   meetingCode: string;
+  noteDateModel: NgbDate;
+  followUpDateModel: NgbDate;
+  completedDateModel: NgbDate;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -117,20 +120,44 @@ export class ExhibitorNoteEditComponent extends BaseFormComponent implements OnI
     note.notes = this.form.get("notes").value;
     note.completedBy = this.form.get("completedBy").value;
 
-    //check for null date values - need to do this so that the null value doesn't try to get converted to a datetime
-    if (this.form.get("noteDate").value != null || this.form.get("noteDate").value != '') {
-      note.noteDate = this.form.get("noteDate").value;
+    //check for null date values and if value exists - need to do this so that the null value doesn't try to get converted to a datetime
+    if (this.form.get("noteDate").value && (this.form.get("noteDate").value != null || this.form.get("noteDate").value != '')) {
+      //Date picker passes back JSON date, format this as a date to send to DB
+      var year: string;
+      var day: string;
+      var month: string;
+      var fullDate: Date;
+      year = this.form.get("noteDate").value.year;
+      day = this.form.get("noteDate").value.day;
+      month = this.form.get("noteDate").value.month;
+      fullDate = new Date(year + "-" + month + "-" + day);
+      note.noteDate = fullDate;
     }
 
-    if (this.form.get("followUpDate").value != null || this.form.get("followUpDate").value != '') {
-      note.followUpDate = this.form.get("followUpDate").value;
+    if (this.form.get("followUpDate").value && (this.form.get("followUpDate").value != null || this.form.get("followUpDate").value != '')) {
+      //Date picker passes back JSON date, format this as a date to send to DB
+      var year: string;
+      var day: string;
+      var month: string;
+      var fullDate: Date;
+      year = this.form.get("followUpDate").value.year;
+      day = this.form.get("followUpDate").value.day;
+      month = this.form.get("followUpDate").value.month;
+      fullDate = new Date(year + "-" + month + "-" + day);
+      note.followUpDate = fullDate;
     }
-
-    if (this.form.get("dateCompleted").value != null || this.form.get("dateCompleted").value != '') {
-      note.dateCompleted = this.form.get("dateCompleted").value;
+    if (this.form.get("dateCompleted").value && (this.form.get("dateCompleted").value != null || this.form.get("dateCompleted").value != '')) {
+      //Date picker passes back JSON date, format this as a date to send to DB
+      var year: string;
+      var day: string;
+      var month: string;
+      var fullDate: Date;
+      year = this.form.get("dateCompleted").value.year;
+      day = this.form.get("dateCompleted").value.day;
+      month = this.form.get("dateCompleted").value.month;
+      fullDate = new Date(year + "-" + month + "-" + day);
+      note.dateCompleted = fullDate;
     }
-
-    console.log(note);
 
     if (this.noteId) {
       //EDIT MODE

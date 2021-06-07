@@ -16,7 +16,7 @@
             <a mat-list-item [routerLink]="['/personRegistration', personId]">Add Registration</a>
             <a mat-list-item [routerLink]="['/speaker']">Add Speaker</a>
             <a mat-list-item [routerLink]="['/exhibitor']">Add Exhibitor</a>
-            <a mat-list-item [routerLink]="['/personEmail', personid]">Add Email</a>
+            <a mat-list-item [routerLink]="['/personEmail', personId]">Add Email</a>
             <a mat-list-item [routerLink]="['/personNote', personId]">Add Note</a>
             <a mat-list-item [routerLink]="['/personList', personId]">Add List</a>
             <a mat-list-item [routerLink]="['/personCreditType', personId]">Add Credit Type</a>
@@ -264,13 +264,13 @@
           <mat-tab label="Email">
             <!--Display Person Email Component-->
             <div class="jumbotron bg-secondary">
-
+              <app-person-email></app-person-email>
             </div>
           </mat-tab>
           <mat-tab label="Notes">
             <!--Display Person Notes Component-->
             <div class="jumbotron bg-secondary">
-
+              <app-person-notes></app-person-notes>
             </div>
           </mat-tab>
           <mat-tab label="Lists">
