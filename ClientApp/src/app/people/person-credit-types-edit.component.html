@@ -1,0 +1,44 @@
+<h2 class="display-3">{{title}}</h2>
+
+<p *ngIf="this.id && !personCreditType"><em>Loading...</em></p>
+
+<div class="row">
+  <div class="col-12">
+    <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="creditTypeCode">Credit Type:</label>
+              <mat-form-field *ngIf="creditTypes">
+                <mat-label>Select a Credit Type</mat-label>
+                <mat-select id="creditTypeCode" formControlName="creditTypeCode" (selectionChange)="onCreditTypeSelected($event)">
+                  <mat-option *ngFor="let creditType of creditTypes" [value]="creditType.creditTypeCode">{{creditType.creditTypeCode}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="hasError('creditTypes')" class="invalid-feedback">
+                <div *ngIf="form.get('creditTypes').errors?.required">
+                  Credit Type Code is required.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="creditTypeDesc">Description:</label>
+              <input type="text" id="creditTypeDesc" formControlName="creditTypeDesc" readonly class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group commands">
+      <button type="submit" *ngIf="id" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Save</button>
+      <button type="submit" *ngIf="!id" (click)="onSubmit()" class="btn btn-success" [disabled]="form.invalid">Add New Credit Type</button>
+      <button type="submit" [routerLink]="['/person', personId]" class="btn btn-default">Cancel</button>
+      <button type="button" *ngIf="id" (click)="onDelete()" class="btn btn-danger">Delete</button>
+    </div>
+
+
+  </div>
+</div>

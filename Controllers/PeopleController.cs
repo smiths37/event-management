@@ -158,7 +158,38 @@ namespace MeetingTrak.Controllers
 
             return emails;
         }
+        [HttpGet]
+        [Route("getCreditTypes/{id}")]
+        public ActionResult<List<PersonCreditTypeDTO>> getCreditTypes(int id)
+        {
+            List<PersonCreditTypeDTO> personCreditTypes = _context.TblPeopleCreditTypes.Select(e => new PersonCreditTypeDTO()
+            {
+                id = e.ID,
+                personId = e.PersonId,
+                creditTypeCode = e.CreditTypeCode,
+                creditTypeDesc = e.CreditTypeCodeNavigation.CreditTypeDesc
+            }).Where(e => e.personId == id).ToList();
+            return personCreditTypes;
+        }
 
-
+        [HttpGet]
+        [Route("getCeCredits/{id}")]
+        public ActionResult<List<PersonCeCreditDTO>> getCeCredits(int id)
+        {
+            List<PersonCeCreditDTO> peopleCeCredits = _context.TblPeopleCecredits.Select(e => new PersonCeCreditDTO()
+            {
+                keyId = e.KeyId,
+                personId = e.PersonId,
+                creditDate = e.CreditDate,
+                meetingCode = e.MeetingCode,
+                regCode = e.RegCode,
+                sessionCode = e.SessionCode,
+                creditTypeCode = e.CreditTypeCode,
+                creditUnits = e.CreditUnits,
+                title = e.Title,
+                selfReported = e.SelfReported
+            }).Where(e => e.personId == id).ToList();
+            return peopleCeCredits;
+        }
     }
 }

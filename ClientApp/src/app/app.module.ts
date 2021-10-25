@@ -26,6 +26,10 @@ import { PersonEmailComponent } from './people/person-email.component';
 import { PersonEmailEditComponent } from './people/person-email-edit.component';
 import { PersonNoteComponent } from './people/person-notes.component';
 import { PersonNoteEditComponent } from './people/person-notes-edit.component';
+import { PersonCreditTypeComponent } from './people/person-credit-types.component';
+import { PersonCreditTypeEditComponent } from './people/person-credit-types-edit.component';
+import { PersonCeCreditComponent } from './people/person-ce-credits.component';
+import { PersonCeCreditEditComponent } from './people/person-ce-credits-edit.component';
 
 //meeting components
 import { MeetingsComponent } from './meetings/meetings.component';
@@ -143,6 +147,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PersonEmailEditComponent,
     PersonNoteComponent,
     PersonNoteEditComponent,
+    PersonCreditTypeComponent,
+    PersonCreditTypeEditComponent,
+    PersonCeCreditComponent,
+    PersonCeCreditEditComponent,
+
 
     MeetingsComponent,
     MeetingEditComponent,
@@ -244,6 +253,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       { path: 'personNotes', component: PersonNoteComponent },
       { path: 'personNote/:personId', component: PersonNoteEditComponent },
       { path: 'personNote/:personId/:noteId', component: PersonNoteEditComponent },
+      { path: 'personCreditTypes', component: PersonCreditTypeComponent },
+      { path: 'personCreditType/:personId', component: PersonCreditTypeEditComponent },
+      { path: 'personCreditType/:personId/:id', component: PersonCreditTypeEditComponent },
+      { path: 'personCeCredits', component: PersonCeCreditComponent },
+      { path: 'personCeCredits/:personId', component: PersonCeCreditComponent },
+      { path: 'personCeCredit/:personId', component: PersonCeCreditEditComponent },
+      { path: 'personCeCredit/:personId/:keyId', component: PersonCeCreditEditComponent },
 
       { path: 'meetings', component: MeetingsComponent },
       { path: 'meeting', component: MeetingEditComponent },

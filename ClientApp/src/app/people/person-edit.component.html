@@ -6,12 +6,12 @@
   <div class="row">
     <div class="col-md-2">
       <mat-card class="card">
-        <mat-card-header>
+        <mat-card-header>  
           <mat-card-title class="heading-title text-warning text-center">Person Maintenance</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <mat-list role="list">
-            <a mat-list-item [routerLink]="['/personAddress', personId]">Add Address</a> 
+            <a mat-list-item [routerLink]="['/personAddress', personId]">Add Address</a>
             <a mat-list-item *ngIf="this.companyId != null" [routerLink]="['/personCompanyAddress', personId, companyId]">Copy Company Address</a>
             <a mat-list-item [routerLink]="['/personRegistration', personId]">Add Registration</a>
             <a mat-list-item [routerLink]="['/speaker']">Add Speaker</a>
@@ -20,6 +20,7 @@
             <a mat-list-item [routerLink]="['/personNote', personId]">Add Note</a>
             <a mat-list-item [routerLink]="['/personList', personId]">Add List</a>
             <a mat-list-item [routerLink]="['/personCreditType', personId]">Add Credit Type</a>
+            <a mat-list-item [routerLink]="['/personCeCredit', personId]">Add a Credit</a>
             <a mat-list-item [routerLink]="['/personUserFields', personId]">HR User Fields</a>
             <a mat-list-item [routerLink]="['/personAwards', personId]">Award Dates</a>
           </mat-list>
@@ -282,13 +283,13 @@
           <mat-tab label="CR Types">
             <!--Display Person CR Types Component-->
             <div class="jumbotron bg-secondary">
-
+              <app-person-credit-types></app-person-credit-types>
             </div>
           </mat-tab>
           <mat-tab label="CR History">
             <!--Display Person CR History Component-->
             <div class="jumbotron bg-secondary">
-
+              <app-person-ce-credits></app-person-ce-credits>
             </div>
           </mat-tab>
           <mat-tab label="User">

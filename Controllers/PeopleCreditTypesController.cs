@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MeetingTrak.Data.Models;
+using MeetingTrak.Data;
 
 namespace MeetingTrak.Controllers
 {
@@ -22,9 +23,9 @@ namespace MeetingTrak.Controllers
 
         // GET: api/PeopleCreditTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TblPeopleCreditTypes>>> GetTblPeopleCreditTypes()
+        public async Task<ActionResult<ApiResult<TblPeopleCreditTypes>>> GetTblPeopleCreditTypes(int pageIndex = 0, int pageSize = 10, string sortColumn = null, string sortOrder = null, string filterColumn = null, string filterQuery = null)
         {
-            return await _context.TblPeopleCreditTypes.ToListAsync();
+            return await ApiResult<TblPeopleCreditTypes>.CreateAsync(_context.TblPeopleCreditTypes.Include(e => e.CreditTypeCodeNavigation.CreditTypeDesc), pageIndex, pageSize, sortColumn, sortOrder, filterColumn, filterQuery);
         }
 
         // GET: api/PeopleCreditTypes/5
@@ -46,7 +47,7 @@ namespace MeetingTrak.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTblPeopleCreditTypes(int id, TblPeopleCreditTypes tblPeopleCreditTypes)
         {
-            if (id != tblPeopleCreditTypes.PersonId)
+            if (id != tblPeopleCreditTypes.ID)
             {
                 return BadRequest();
             }
@@ -78,23 +79,9 @@ namespace MeetingTrak.Controllers
         public async Task<ActionResult<TblPeopleCreditTypes>> PostTblPeopleCreditTypes(TblPeopleCreditTypes tblPeopleCreditTypes)
         {
             _context.TblPeopleCreditTypes.Add(tblPeopleCreditTypes);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (TblPeopleCreditTypesExists(tblPeopleCreditTypes.PersonId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTblPeopleCreditTypes", new { id = tblPeopleCreditTypes.PersonId }, tblPeopleCreditTypes);
+            return CreatedAtAction("GetTblPeopleCreditTypes", new { id = tblPeopleCreditTypes.ID }, tblPeopleCreditTypes);
         }
 
         // DELETE: api/PeopleCreditTypes/5
@@ -115,7 +102,7 @@ namespace MeetingTrak.Controllers
 
         private bool TblPeopleCreditTypesExists(int id)
         {
-            return _context.TblPeopleCreditTypes.Any(e => e.PersonId == id);
+            return _context.TblPeopleCreditTypes.Any(e => e.ID == id);
         }
     }
 }

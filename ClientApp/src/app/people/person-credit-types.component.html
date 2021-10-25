@@ -1,0 +1,24 @@
+<p *ngIf="!personCreditTypes"><em>Loading...</em></p>
+
+<table mat-table [dataSource]="personCreditTypes" class="mat-elevation-z8" [hidden]="!personCreditTypes" matSort (matSortChange)="loadData()"
+       matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultSortOrder}}">
+
+  <ng-container matColumnDef="creditType">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit Type</th>
+    <td mat-cell *matCellDef="let personCreditType">
+      {{personCreditType.creditTypeCode}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+    <td mat-cell *matCellDef="let personCreditType">
+      <a [routerLink]="['/personCreditType', this.personId, personCreditType.id]">
+        {{personCreditType.creditTypeDesc}}
+      </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+</table>

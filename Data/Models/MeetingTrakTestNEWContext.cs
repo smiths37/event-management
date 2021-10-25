@@ -8953,9 +8953,13 @@ namespace MeetingTrak.Data.Models
 
             modelBuilder.Entity<TblPeopleCreditTypes>(entity =>
             {
-                entity.HasKey(e => new { e.PersonId, e.CreditTypeCode })
-                    .HasName("aaaaatblPeopleCreditTypes_PK")
-                    .IsClustered(false);
+                //entity.HasKey(e => new { e.PersonId, e.CreditTypeCode })
+                //    .HasName("aaaaatblPeopleCreditTypes_PK")
+                //    .IsClustered(false);
+
+                entity.HasKey(e => e.ID)
+                .HasName("PK__tblPeopl__3214EC275E2C5DC2")
+                .IsClustered(false);
 
                 entity.ToTable("tblPeopleCreditTypes");
 
@@ -8963,6 +8967,8 @@ namespace MeetingTrak.Data.Models
                     .HasName("tblCreditTypestblPeopleCreditTypes");
 
                 entity.Property(e => e.PersonId).HasColumnName("Person ID");
+
+                entity.Property(e => e.ID).HasColumnName("ID");
 
                 entity.Property(e => e.CreditTypeCode)
                     .HasColumnName("Credit Type Code")

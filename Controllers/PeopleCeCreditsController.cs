@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MeetingTrak.Data.Models;
+using MeetingTrak.Data;
 
 namespace MeetingTrak.Controllers
 {
@@ -22,9 +23,9 @@ namespace MeetingTrak.Controllers
 
         // GET: api/PeopleCeCredits
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TblPeopleCecredits>>> GetTblPeopleCecredits()
+        public async Task<ActionResult<ApiResult<TblPeopleCecredits>>> GetTblPeopleCecredits(int pageIndex = 0, int pageSize = 10, string sortColumn = null, string sortOrder = null, string filterColumn = null, string filterQuery = null)
         {
-            return await _context.TblPeopleCecredits.ToListAsync();
+            return await ApiResult<TblPeopleCecredits>.CreateAsync(_context.TblPeopleCecredits, pageIndex, pageSize, sortColumn, sortOrder, filterColumn, filterQuery);
         }
 
         // GET: api/PeopleCeCredits/5
